@@ -14,6 +14,7 @@
 		0E85F12328B368CB00F85E16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E85F12228B368CB00F85E16 /* Assets.xcassets */; };
 		0E85F12628B368CB00F85E16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E85F12428B368CB00F85E16 /* LaunchScreen.storyboard */; };
 		0E85F12E28B374A700F85E16 /* TackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F12D28B374A700F85E16 /* TackViewController.swift */; };
+		0E85F13328B3946400F85E16 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F13228B3946400F85E16 /* StoreManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0E85F12528B368CB00F85E16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E85F12728B368CB00F85E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E85F12D28B374A700F85E16 /* TackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TackViewController.swift; sourceTree = "<group>"; };
+		0E85F13228B3946400F85E16 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,41 @@
 		0E85F11528B368C900F85E16 /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
-				0E85F12D28B374A700F85E16 /* TackViewController.swift */,
-				0E85F11628B368C900F85E16 /* AppDelegate.swift */,
-				0E85F11828B368C900F85E16 /* SceneDelegate.swift */,
-				0E85F11A28B368C900F85E16 /* TackListViewController.swift */,
+				0E85F12F28B38CF500F85E16 /* App */,
+				0E85F13028B393FB00F85E16 /* Services */,
+				0E85F13128B3940E00F85E16 /* ViewControllers */,
 				0E85F12228B368CB00F85E16 /* Assets.xcassets */,
 				0E85F12428B368CB00F85E16 /* LaunchScreen.storyboard */,
 				0E85F11F28B368C900F85E16 /* TaskList.xcdatamodeld */,
-				0E85F12728B368CB00F85E16 /* Info.plist */,
 			);
 			path = TaskList;
+			sourceTree = "<group>";
+		};
+		0E85F12F28B38CF500F85E16 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0E85F11628B368C900F85E16 /* AppDelegate.swift */,
+				0E85F11828B368C900F85E16 /* SceneDelegate.swift */,
+				0E85F12728B368CB00F85E16 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0E85F13028B393FB00F85E16 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0E85F13228B3946400F85E16 /* StoreManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0E85F13128B3940E00F85E16 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0E85F11A28B368C900F85E16 /* TackListViewController.swift */,
+				0E85F12D28B374A700F85E16 /* TackViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +170,7 @@
 				0E85F12128B368C900F85E16 /* TaskList.xcdatamodeld in Sources */,
 				0E85F11B28B368C900F85E16 /* TackListViewController.swift in Sources */,
 				0E85F11728B368C900F85E16 /* AppDelegate.swift in Sources */,
+				0E85F13328B3946400F85E16 /* StoreManager.swift in Sources */,
 				0E85F12E28B374A700F85E16 /* TackViewController.swift in Sources */,
 				0E85F11928B368C900F85E16 /* SceneDelegate.swift in Sources */,
 			);
@@ -285,7 +313,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G56833V6RD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TaskList/Info.plist;
+				INFOPLIST_FILE = TaskList/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -312,7 +340,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G56833V6RD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TaskList/Info.plist;
+				INFOPLIST_FILE = TaskList/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
