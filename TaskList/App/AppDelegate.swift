@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,11 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        StoreManager.shired.saveContext()
+        StoreManager.shared.saveContext()
     }
     
     func saveContextAppDelegate() {
-        StoreManager.shired.saveContext()
+        StoreManager.shared.saveContext()
     }
 
 //    // MARK: - Core Data stack

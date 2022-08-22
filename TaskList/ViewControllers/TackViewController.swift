@@ -9,6 +9,9 @@ import UIKit
 
 class TackViewController: UIViewController {
     
+    
+    private let viewContext = StoreManager.shared.persistentContainer.viewContext
+    
     private lazy var taskTextField: UITextField = {
        let textField = UITextField()
         textField.borderStyle = .roundedRect
@@ -26,6 +29,7 @@ class TackViewController: UIViewController {
                     alpha: 255/255
             ),
             action: UIAction { [unowned self] _ in
+                save()
                 dismiss(animated: true)
         })
     }()
@@ -86,5 +90,21 @@ extension TackViewController {
             cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
+    }
+    
+    private func save() {
+        let task = Task(context: viewContext)
+        task.title = taskTextField.text
+        
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
+//        delegate.reloadData()
+        dismiss(animated: true)
     }
 }

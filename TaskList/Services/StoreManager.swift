@@ -9,8 +9,11 @@ import Foundation
 import CoreData
 
 class StoreManager {
-    static let shired = StoreManager()
-    lazy var persistentContainer: NSPersistentContainer = {
+    static let shared = StoreManager()
+    
+    // MARK: - Core Data stack
+    
+    var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TaskList")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
