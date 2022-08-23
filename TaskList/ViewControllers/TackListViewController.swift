@@ -121,6 +121,8 @@ extension TackListViewController {
         }
     }
     
+    // эти методы наверно переместить в StorageManager
+    
     private func editTask(_ task: Task, newName: String) {
         task.title = newName
         
@@ -132,7 +134,6 @@ extension TackListViewController {
                 print(error.localizedDescription)
             }
         }
-        tableView.reloadData()
     }
     
     private func deleteTask(_ task: Task) {
@@ -145,7 +146,6 @@ extension TackListViewController {
             } catch let error {
                 print(error.localizedDescription)
             }
-            tableView.reloadData()
         }
     }
     
@@ -175,6 +175,7 @@ extension TackListViewController {
         
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .destructive) { _ in })
+        
         alert.addTextField { textField in
             if title == "Edit" {
                 textField.text = task?.title ?? nil
