@@ -36,4 +36,6 @@ class StorageManager {
             }
         }
     }
+    
+    private init() {}
 }
