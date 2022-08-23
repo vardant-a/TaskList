@@ -121,7 +121,7 @@ extension TackListViewController {
         }
     }
     
-    // эти методы наверно переместить в StorageManager
+    // эти методы наверно переместить в StorageManager надо?
     
     private func editTask(_ task: Task, newName: String) {
         task.title = newName
