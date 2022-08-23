@@ -30,6 +30,7 @@ class TackListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        cell.backgroundColor = .white
         let task = taskList[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.text = task.title
@@ -43,9 +44,9 @@ class TackListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            taskList.remove(at: indexPath.row)
-            print("Размер массива - ", taskList.count)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            showAlertDelete("1")
+//            taskList.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
             
             tableView.endUpdates()
         }
@@ -80,7 +81,7 @@ extension TackListViewController {
     @objc private func addNewTask() {
         showAlert(
             withTitle: "New task",
-            andMessage: "What do yiut want to do?"
+            andMessage: "What do you want to do?"
         )
     }
     
@@ -113,6 +114,20 @@ extension TackListViewController {
         }
     }
     
+    private func edit() {
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func deleteTask() {
+        1
+    }
+    
     // MARK: - Alert Controller
     
     private func showAlert(withTitle title: String, andMessage message: String) {
@@ -123,11 +138,31 @@ extension TackListViewController {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive) { _ in }
         alert.addTextField { textField in
-            textField.placeholder = "Enter new task"
+            if title == "Changind a task" {
+                textField.placeholder = "Make edits"
+            } else {
+                textField.placeholder = "Enter new task"
+            }
         }
         
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func showAlertDelete(_ title: String) {
+        let alert = UIAlertController(title: title, message: "Please select an option", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { [unowned self] _ in
+            showAlert(withTitle: "Changing a task", andMessage: "Make changes")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+        }))
+        
         present(alert, animated: true, completion: nil)
     }
 }
