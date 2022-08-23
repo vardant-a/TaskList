@@ -1,5 +1,5 @@
 //
-//  StoreManager.swift
+//  StorageManager.swift
 //  TaskList
 //
 //  Created by Алексей on 22.08.2022.
@@ -8,8 +8,8 @@
 import Foundation
 import CoreData
 
-class StoreManager {
-    static let shared = StoreManager()
+class StorageManager {
+    static let shared = StorageManager()
     
     // MARK: - Core Data stack
     

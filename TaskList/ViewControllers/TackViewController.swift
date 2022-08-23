@@ -10,7 +10,7 @@ import UIKit
 class TackViewController: UIViewController {
     
     
-    private let viewContext = StoreManager.shared.persistentContainer.viewContext
+    private let viewContext = StorageManager.shared.persistentContainer.viewContext
     
     private lazy var taskTextField: UITextField = {
        let textField = UITextField()

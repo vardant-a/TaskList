@@ -15,7 +15,7 @@
 		0E85F12328B368CB00F85E16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E85F12228B368CB00F85E16 /* Assets.xcassets */; };
 		0E85F12628B368CB00F85E16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E85F12428B368CB00F85E16 /* LaunchScreen.storyboard */; };
 		0E85F12E28B374A700F85E16 /* TackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F12D28B374A700F85E16 /* TackViewController.swift */; };
-		0E85F13328B3946400F85E16 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F13228B3946400F85E16 /* StoreManager.swift */; };
+		0E85F13328B3946400F85E16 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F13228B3946400F85E16 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		0E85F12528B368CB00F85E16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E85F12728B368CB00F85E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E85F12D28B374A700F85E16 /* TackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TackViewController.swift; sourceTree = "<group>"; };
-		0E85F13228B3946400F85E16 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		0E85F13228B3946400F85E16 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 		0E85F13028B393FB00F85E16 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0E85F13228B3946400F85E16 /* StoreManager.swift */,
+				0E85F13228B3946400F85E16 /* StorageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -173,7 +173,7 @@
 				0E85F12128B368C900F85E16 /* TaskList.xcdatamodeld in Sources */,
 				0E85F11B28B368C900F85E16 /* TackListViewController.swift in Sources */,
 				0E85F11728B368C900F85E16 /* AppDelegate.swift in Sources */,
-				0E85F13328B3946400F85E16 /* StoreManager.swift in Sources */,
+				0E85F13328B3946400F85E16 /* StorageManager.swift in Sources */,
 				0E85F12E28B374A700F85E16 /* TackViewController.swift in Sources */,
 				0E03C10F28B4ECD8000D7841 /* Task.swift in Sources */,
 				0E85F11928B368C900F85E16 /* SceneDelegate.swift in Sources */,

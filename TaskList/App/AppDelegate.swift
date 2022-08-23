@@ -32,11 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        StoreManager.shared.saveContext()
+        StorageManager.shared.saveContext()
     }
     
     func saveContextAppDelegate() {
-        StoreManager.shared.saveContext()
+        StorageManager.shared.saveContext()
     }
 }
 
