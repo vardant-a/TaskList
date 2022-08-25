@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E68E5B728B7DD300027F373 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E68E5B628B7DD300027F373 /* UIAlertControllerExtension.swift */; };
 		0E85F11728B368C900F85E16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F11628B368C900F85E16 /* AppDelegate.swift */; };
 		0E85F11928B368C900F85E16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F11828B368C900F85E16 /* SceneDelegate.swift */; };
 		0E85F11B28B368C900F85E16 /* TackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F11A28B368C900F85E16 /* TackListViewController.swift */; };
 		0E85F12128B368C900F85E16 /* TaskList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F11F28B368C900F85E16 /* TaskList.xcdatamodeld */; };
 		0E85F12328B368CB00F85E16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E85F12228B368CB00F85E16 /* Assets.xcassets */; };
 		0E85F12628B368CB00F85E16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E85F12428B368CB00F85E16 /* LaunchScreen.storyboard */; };
-		0E85F12E28B374A700F85E16 /* TackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F12D28B374A700F85E16 /* TackViewController.swift */; };
 		0E85F13328B3946400F85E16 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85F13228B3946400F85E16 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E68E5B628B7DD300027F373 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		0E85F11328B368C900F85E16 /* TaskList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E85F11628B368C900F85E16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E85F11828B368C900F85E16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,7 +27,6 @@
 		0E85F12228B368CB00F85E16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E85F12528B368CB00F85E16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E85F12728B368CB00F85E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0E85F12D28B374A700F85E16 /* TackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TackViewController.swift; sourceTree = "<group>"; };
 		0E85F13228B3946400F85E16 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E68E5B528B7DD0E0027F373 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E68E5B628B7DD300027F373 /* UIAlertControllerExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0E85F10A28B368C900F85E16 = {
 			isa = PBXGroup;
 			children = (
@@ -60,8 +68,8 @@
 		0E85F11528B368C900F85E16 /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
-				0E9DB65728B5639D0044F57E /* Models */,
 				0E85F12F28B38CF500F85E16 /* App */,
+				0E9DB65728B5639D0044F57E /* Models */,
 				0E85F13028B393FB00F85E16 /* Services */,
 				0E85F13128B3940E00F85E16 /* ViewControllers */,
 				0E85F12228B368CB00F85E16 /* Assets.xcassets */,
@@ -92,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				0E85F11A28B368C900F85E16 /* TackListViewController.swift */,
-				0E85F12D28B374A700F85E16 /* TackViewController.swift */,
+				0E68E5B528B7DD0E0027F373 /* Extensions */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -177,9 +185,9 @@
 			files = (
 				0E85F12128B368C900F85E16 /* TaskList.xcdatamodeld in Sources */,
 				0E85F11B28B368C900F85E16 /* TackListViewController.swift in Sources */,
+				0E68E5B728B7DD300027F373 /* UIAlertControllerExtension.swift in Sources */,
 				0E85F11728B368C900F85E16 /* AppDelegate.swift in Sources */,
 				0E85F13328B3946400F85E16 /* StorageManager.swift in Sources */,
-				0E85F12E28B374A700F85E16 /* TackViewController.swift in Sources */,
 				0E85F11928B368C900F85E16 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

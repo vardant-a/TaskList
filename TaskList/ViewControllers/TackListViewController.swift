@@ -9,8 +9,6 @@ import UIKit
 
 class TackListViewController: UITableViewController {
     
-    private let сontext = StorageManager.shared.persistentContainer.viewContext
-    
     private let cellID = "task"
     private var taskList: [Task] = []
 
@@ -19,7 +17,6 @@ class TackListViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         view.backgroundColor = .white
         setupNavigationBar()
-        fetchData()
     }
     
     // MARK: Setting TableView
@@ -38,16 +35,20 @@ class TackListViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let taskEdit = taskList[indexPath.row]
-        
-        if editingStyle == .delete {
-            showAlertEdit(taskEdit)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let task = taskList[indexPath.row]
+        showAlert(task: task) {
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let task = taskList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            StorageManager.shared.delete(task)
+        }
     }
 }
 
@@ -77,145 +78,46 @@ extension TackListViewController {
     }
     
     @objc private func didTapAddTask() {
-        if taskList.isEmpty {
-            showAlert(
-                withTitle: "First task",
-                andMessage: "What do you want to do first?"
-            )
-        } else {
-            showAlert(
-                withTitle: "New task",
-                andMessage: "What do you want to do?"
+        showAlert()
+    }
+    
+    private func save(taskName: String) {
+        StorageManager.shared.create(taskName) { [unowned self] task in
+            taskList.append(task)
+            tableView.insertRows(
+                at: [IndexPath(row: self.taskList.count - 1, section: 0)],
+                with: .automatic
             )
         }
     }
-    
-    // MARK: - Working Data Store
     
     private func fetchData() {
-        let fetchRequest = Task.fetchRequest()
-        
-        do {
-            taskList = try сontext.fetch(fetchRequest)
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func addTask(_ taskName: String) {
-        let task = Task(context: сontext)
-        task.title = taskName
-        taskList.append(task)
-        
-        let cellIndex = IndexPath(row: taskList.count - 1, section: 0)
-        tableView.insertRows(at: [cellIndex], with: .automatic)
-        
-        if сontext.hasChanges {
-            do {
-                try сontext.save()
-            } catch let error {
+        StorageManager.shared.fetchData { [unowned self] result in
+            switch result {
+            case .success(let tasks):
+                self.taskList = tasks
+            case .failure(let error):
                 print(error.localizedDescription)
+                
             }
         }
     }
+}
+
+extension TackListViewController {
     
-    // эти методы наверно переместить в StorageManager надо?
-    
-    private func editTask(_ task: Task, newName: String) {
-        task.title = newName
-        
-        if сontext.hasChanges {
-            do {
-                try сontext.save()
-                fetchData()
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func deleteTask(_ task: Task) {
-        сontext.delete(task)
-        
-        if сontext.hasChanges {
-            do {
-                try сontext.save()
-                fetchData()
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    // MARK: - Alert Controller
-    
-    private func showAlert(_ task: Task? = nil, withTitle title: String, andMessage message: String) {
-        let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Save",
-                style: .default
-            ) { [unowned self] _ in
-                guard let taskName = alert.textFields?.first?.text, !taskName.isEmpty else { return }
-                if title == "Edit" {
-                    editTask(task ?? taskList[1], newName: taskName)
-                    tableView.reloadData()
-                } else {
-                    addTask(taskName)
-                    tableView.reloadData()
-                }
-        })
-        
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .destructive) { _ in })
-        
-        alert.addTextField { textField in
-            if title == "Edit" {
-                textField.text = task?.title ?? nil
-                textField.placeholder = "Make edits"
+    private func showAlert(task: Task? = nil, completion: (() -> Void)? = nil) {
+        let title = task != nil
+            ? "Update Task" : "New Task"
+        let alert = UIAlertController.createAlertController(withTitle: title)
+        alert.action(task: task) { [weak self] taskName in
+            if let task = task, let completion = completion {
+                StorageManager.shared.update(task, newName: taskName)
+                completion()
             } else {
-                textField.placeholder = "Enter new task"
+                self?.save(taskName: taskName)
             }
         }
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func showAlertEdit(_ task: Task) {
-        let alert = UIAlertController(
-            title: task.title ?? "Task",
-            message: "Please select an option required for this task",
-            preferredStyle: .actionSheet
-        )
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Edit",
-                style: .default,
-                handler: { [unowned self] _ in
-                    showAlert(task,
-                        withTitle: "Edit",
-                        andMessage: "Make changes")
-                }
-            ))
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Delete",
-                style: .destructive,
-                handler: { [unowned self] _ in
-                    deleteTask(task)
-                    tableView.reloadData()
-                }
-            ))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
     }
 }
